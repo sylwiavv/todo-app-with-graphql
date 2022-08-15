@@ -12,16 +12,16 @@ const GetUsers = () => {
     }
   }, [data]);
   return (
-    <div>
-      {users.map(({ firstName, lastName, email, id }) => (
-        <ul>
-          <li>{id}</li>
-          <li> {firstName}</li>
-          <li> {lastName}</li>
-          <li>{email}</li>
-        </ul>
-      ))}
-    </div>
+      <>
+        {users.map(({ firstName, lastName, email, id }) => (
+            <ul key={id}>
+              <li>{id}</li>
+              <li> {firstName}</li>
+              <li> {lastName}</li>
+              <li>{email}</li>
+            </ul>
+        ))}
+      </>
   );
 };
 
