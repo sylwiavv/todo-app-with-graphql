@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER_MUTATION } from '../GraphQL/Mutations';
 
-function Form() {
+const Form = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // const [createUser, { error }] = useMutation(CREATE_USER_MUTATION);
 
   const [createUser, { error }] = useMutation(CREATE_USER_MUTATION);
 

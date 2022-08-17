@@ -23,24 +23,21 @@ const client = new ApolloClient({
   link: link,
 });
 
-
-const Root = () => {
-  return (
+const Root = () => (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <MainLayout>
-            <Routes>
-              <Route path="/" element={<Form />} />
-              <Route path="/users" element={<GetUsers />} />
-              <Route path="/data-raport" element={<DataRaport />} />
-            </Routes>
-          </MainLayout>
-      </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle/>
+                <MainLayout>
+                    <Routes>
+                        <Route path="/" element={<Form/>}/>
+                        <Route path="/users" element={<GetUsers/>}/>
+                        <Route path="/data-raport" element={<DataRaport/>}/>
+                    </Routes>
+                </MainLayout>
+            </ThemeProvider>
         </BrowserRouter>
     </ApolloProvider>
-  );
-};
+);
 
 export default Root;
