@@ -1,4 +1,4 @@
 const date = new Date;
-const generatedId = date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
+const generatedId = parseInt(date.getHours() + "" + date.getMinutes() + "" + date.getSeconds());
 
 module.exports = generatedId
