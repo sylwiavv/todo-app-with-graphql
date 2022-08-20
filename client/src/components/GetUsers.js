@@ -38,6 +38,10 @@ const GetUsers = () => {
                 firstName: helloName,
             },
         });
+
+        if (errorMutationSecond) {
+            console.log(errorMutationSecond);
+        }
     };
 
     if (loading) return "Loading...";
@@ -47,7 +51,6 @@ const GetUsers = () => {
         <>
             {users.map(({firstName, lastName, email, id}) => (
                 <ul key={`${id} ${firstName}`}>
-                    <li>{id}</li>
                     <li>{firstName}</li>
                     <li>{lastName}</li>
                     <li>{email}</li>

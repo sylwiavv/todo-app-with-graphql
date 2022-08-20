@@ -37,7 +37,7 @@ const Mutation = new GraphQLObjectType({
                 },
                 resolve(parent, args) {
                     userData.push( {
-                        id: userData.length + "" + generatedId,
+                        id: userData.length + generatedId,
                         firstName: args.firstName,
                         lastName: args.lastName,
                         email: args.email,
@@ -77,6 +77,7 @@ const Mutation = new GraphQLObjectType({
                 if (id !== -1) {
                     userData[indexOfObject].firstName = args.firstName
                 }
+                console.log(userData);
 
                 return args;
             }

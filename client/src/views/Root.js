@@ -23,8 +23,6 @@ const client = new ApolloClient({
   link: link,
 });
 
-console.log(client);
-
 const Root = () => (
     <ApolloProvider client={client}>
         <BrowserRouter>
