@@ -1,47 +1,71 @@
 import React, {useEffect, useState} from 'react';
 import {useQuery, useMutation} from '@apollo/client';
-import { LOAD_USERS } from '../GraphQL/Queries';
-import {CREATE_DELETE_USER_MUTATION} from "../GraphQL/Mutations";
+import {LOAD_USERS} from '../GraphQL/Queries';
+import {CREATE_DELETE_USER_MUTATION, UPDATE_USER_MUTATION} from "../GraphQL/Mutations";
 
 const GetUsers = () => {
-  const [deleteUser, { errorMutation }] = useMutation(CREATE_DELETE_USER_MUTATION);
+    const [helloName, setFirstName] = useState('');
 
-  const { error, loading, data, refetch } = useQuery(LOAD_USERS);
-  const [users, setUsers] = useState([]);
+    const [deleteUser, {errorMutation}] = useMutation(CREATE_DELETE_USER_MUTATION);
+    const [updateUser, {errorMutationSecond}] = useMutation(UPDATE_USER_MUTATION);
 
-  useEffect(() => {
-    if (data) {
-      setUsers(data.getAllUsers);
-    }
-  },[data])
+    const {error, loading, data, refetch} = useQuery(LOAD_USERS);
+    const [users, setUsers] = useState([]);
 
-  const removeUser = (id) => {
-      deleteUser({
-        variables: {
-          id: id
-        },
-      });
-      refetch();
+    useEffect(() => {
+        if (data) {
+            setUsers(data.getAllUsers);
+        }
+    }, [data])
 
-      if (errorMutation) {
-        console.log(errorMutation);
-      }
+    const removeUser = (id) => {
+        deleteUser({
+            variables: {
+                id: id
+            },
+        });
+        refetch();
+
+        if (errorMutation) {
+            console.log(errorMutation);
+        }
     };
 
-  return (
-      <>
-        {users.map(({ firstName, lastName, email, id }) => (
-            <ul key={`${id} ${firstName}`}>
-              <li>{id}</li>
-              <li> {firstName}</li>
-              <li> {lastName}</li>
-              <li>{email}</li>
-              {/*<button onClick={() => removeItem(id)}>Remove Me</button>*/}
-              <button onClick={() => removeUser(id)}>Remove Me</button>
-            </ul>
-        ))}
-      </>
-  );
+    const updateData = (id) => {
+        updateUser({
+            variables: {
+                id: id,
+                firstName: helloName,
+            },
+        });
+    };
+
+    if (loading) return "Loading...";
+    if (error) return console.log(error);
+
+    return (
+        <>
+            {users.map(({firstName, lastName, email, id}) => (
+                <ul key={`${id} ${firstName}`}>
+                    <li>{id}</li>
+                    <li>{firstName}</li>
+                    <li>{lastName}</li>
+                    <li>{email}</li>
+                    {/*<button onClick={() => removeItem(id)}>Remove Me</button>*/}
+                    <button onClick={() => removeUser(id)}>Remove Me</button>
+
+                    <input
+                        type="text"
+                        placeholder="First Name"
+                        onChange={(e) => {
+                            setFirstName(e.target.value);
+                        }}
+                    />
+                    <button onClick={() => updateData(id)}> Upadate Mutation</button>
+                </ul>
+            ))}
+        </>
+    );
 };
 
 export default GetUsers;

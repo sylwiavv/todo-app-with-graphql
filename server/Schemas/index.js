@@ -60,6 +60,26 @@ const Mutation = new GraphQLObjectType({
                 userData.splice(indexOfObject, 1);
                 return args;
             }
+        },
+
+        updateUser: {
+            type: UserType,
+            args: {
+                id: {type: GraphQLInt},
+                firstName: { type: GraphQLString }
+            },
+            resolve(parent, args) {
+                const id = args.id;
+                const indexOfObject = userData.findIndex(object => {
+                    return object.id === id;
+                });
+
+                if (id !== -1) {
+                    userData[indexOfObject].firstName = args.firstName
+                }
+
+                return args;
+            }
         }
     }
 })
