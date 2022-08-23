@@ -3,10 +3,10 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER_MUTATION } from '../GraphQL/Mutations';
 
 const Form = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const [createUser, { error }] = useMutation(CREATE_USER_MUTATION);
 
@@ -58,6 +58,6 @@ const Form = () => {
       <button onClick={addUser}> Create User</button>
     </form>
   );
-}
+};
 
 export default Form;

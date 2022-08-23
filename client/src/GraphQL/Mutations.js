@@ -20,7 +20,7 @@ export const CREATE_DELETE_USER_MUTATION = gql`
 export const UPDATE_USER_MUTATION = gql`
   mutation updateUser($id: Int!, $firstName: String!) {
     updateUser(id: $id, firstName: $firstName) {
-      id,
+      id
       firstName
     }
   }

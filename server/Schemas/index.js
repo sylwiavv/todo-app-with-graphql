@@ -77,8 +77,6 @@ const Mutation = new GraphQLObjectType({
                 if (id !== -1) {
                     userData[indexOfObject].firstName = args.firstName
                 }
-                console.log(userData);
-
                 return args;
             }
         }
